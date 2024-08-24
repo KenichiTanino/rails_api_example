@@ -13,6 +13,9 @@ class Addr
   def index
     addrs = []
     idcount = RedisObj.call('GET', "idcount")
+    if not idcount
+      return []
+    end
     last = Integer(idcount) - 1
     (1..last).each{|n|
       aid = "aid:#{n}"
